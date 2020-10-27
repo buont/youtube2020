@@ -10,10 +10,12 @@ public class TestYoutube extends TestBase {
         youtubeResultsPage.clickOnFirstVideo();
         youtubeVideoPage.clickSkipButton();
         youtubeVideoPage.setProgressBarToMiddle();
-        youtubeVideoPage.clickOnPlayButton();
+        youtubeVideoPage.clickOnPlayPauseButton(); // first to pause
+        youtubeVideoPage.clickOnPlayPauseButton();
         youtubeVideoPage.clickOnMuteButton();
         youtubeVideoPage.saveVideoDataToFile("videofile");
         youtubeVideoPage.goToNextVido();
+        youtubeVideoPage.clickOnPlayPauseButton();
     }
 
 }

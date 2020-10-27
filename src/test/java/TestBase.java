@@ -2,6 +2,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.testng.annotations.BeforeMethod;
 
 import java.util.concurrent.TimeUnit;
 
@@ -20,6 +21,11 @@ public class TestBase {
         youtubeMainPage = new YoutubeMainPage(driver);
         youtubeResultsPage = new YoutubeResultsPage(driver);
         youtubeVideoPage = new YoutubeVideoPage(driver);
+    }
+
+    @BeforeMethod
+    public void setMethod(){
+        driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
     }
 
     @After

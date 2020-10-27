@@ -19,6 +19,9 @@ public class YoutubeMainPage {
     @FindBy(id = "introAgreeButton")
     WebElement cookiesAgreeButton;
 
+    @FindBy(id ="iframe")
+    WebElement iframeCoockies;
+
 
     public YoutubeMainPage(WebDriver driver){
         this.driver=driver;
@@ -27,13 +30,16 @@ public class YoutubeMainPage {
 
     public void skipLoginToYoutube(
     ){
-        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         skipButton.click();
     }
 
     public void acceptCoogies() {
+        driver.switchTo().frame(iframeCoockies);
         JavascriptExecutor executor = (JavascriptExecutor)driver;
         executor.executeScript("arguments[0].click();", cookiesAgreeButton);
+        driver.switchTo().defaultContent();
+
     }
 
     public void searchForText(String text){
