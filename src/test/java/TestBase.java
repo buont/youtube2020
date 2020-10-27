@@ -2,11 +2,11 @@ import org.junit.After;
 import org.junit.Before;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.interactions.Actions;
+
+import java.util.concurrent.TimeUnit;
 
 public class TestBase {
     WebDriver driver;
-    Actions action;
     YoutubeVideoPage youtubeVideoPage;
     YoutubeMainPage youtubeMainPage;
     YoutubeResultsPage youtubeResultsPage;
@@ -16,7 +16,7 @@ public class TestBase {
         driver = new ChromeDriver();
         driver.manage().window().maximize();
         driver.get("https://www.youtube.com/");
-        action = new Actions(driver);
+        driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
         youtubeMainPage = new YoutubeMainPage(driver);
         youtubeResultsPage = new YoutubeResultsPage(driver);
         youtubeVideoPage = new YoutubeVideoPage(driver);
@@ -24,6 +24,7 @@ public class TestBase {
 
     @After
     public void teardown(){
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
         driver.quit();
     }
 
